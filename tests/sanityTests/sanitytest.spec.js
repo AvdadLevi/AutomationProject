@@ -1,12 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("sanity suite", () => {
-  test("sanity", async ({ page }) => {
+  test("User Journey: Login, Add to Cart, and Complete Order", async ({ page }) => {
     await page.goto("https://www.saucedemo.com/");
-    //Fill in
+    //log in
     await page.locator('[data-test="username"]').fill("standard_user");
     await page.locator('[data-test="password"]').fill("secret_sauce");
-    //click
     await page.locator('[data-test="login-button"]').click();
     //url validation
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
