@@ -3,6 +3,9 @@ import { BASE_URL, usernamebox, passwordbox, loginButton, Inventory_URL } from "
 
 
 test.describe("sanity suite", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(BASE_URL);
+})
   test("User Journey: Login, Add to Cart, and Complete Order", async ({ page }) => {
     await page.goto(BASE_URL, Inventory_URL);
     //log in
