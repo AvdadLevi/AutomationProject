@@ -1,16 +1,16 @@
 import { expect, test } from "@playwright/test";
-import { BASE_URL, usernamebox, passwordbox, loginButton } from "../utils/testData";
+import { BASE_URL, usernamebox, passwordbox, loginButton, Inventory_URL } from "../utils/testData";
 
 
 test.describe("sanity suite", () => {
   test("User Journey: Login, Add to Cart, and Complete Order", async ({ page }) => {
-    await page.goto(BASE_URL);
+    await page.goto(BASE_URL, Inventory_URL);
     //log in
     await page.locator(usernamebox).fill("standard_user");
     await page.locator(passwordbox).fill("secret_sauce");
     await page.locator(loginButton).click();
     //url validation
-    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+    await expect(page).toHaveURL(Inventory_URL);
     //adding to shopping cart
     await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
     await page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
