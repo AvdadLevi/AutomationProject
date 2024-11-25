@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { Validusers } from "../utils/parameterized tests/Validlogin";
 import { BASE_URL, usernamebox, passwordbox, loginButton, Inventory_URL } from "../utils/testData";
 
-test.describe.only("Positive Login suite", () => {
+test.describe("Positive Login suite", () => {
     test.beforeEach(async ({ page }) => {
         await page.goto(BASE_URL);
     })

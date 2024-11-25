@@ -3,7 +3,7 @@ import { blankcombinations1, fillCombinations, blankcombinations2 } from "../uti
 import { BASE_URL,usernamebox, passwordbox, loginButton } from "../utils/testData";
 
 
-test.describe.only("negative login suite", () => {
+test.describe("negative login suite", () => {
   
   test.beforeEach(async ({ page }) => {
     await page.goto(BASE_URL);
