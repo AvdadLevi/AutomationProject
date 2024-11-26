@@ -1,11 +1,8 @@
 import {expect, test} from '@playwright/test'
 import {
-    baseURL,
-    usernameBox,
-    passwordBox,
-    loginButton,
-    inventoryURL,
-} from '../utils/testData'
+    baseURL, inventoryURL
+} from '../utils/testData.js'
+import { usernameBox, passwordBox, loginButton } from '../utils/locators.js'
 import {validUsers} from '../utils/parameterizedData/validLogin.js'
 
 test.describe('Positive Login suite', () => {

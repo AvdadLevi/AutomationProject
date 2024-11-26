@@ -1,6 +1,7 @@
 import {expect, test} from '@playwright/test'
 import {invalidUsersDetails} from '../utils/parameterizedData/invalidLogin.js'
-import {usernameBox, passwordBox, loginButton, baseURL} from '../utils/testData'
+import { baseURL } from '../utils/testData.js'
+import { usernameBox, passwordBox, loginButton } from '../utils/locators.js'
 
 test.describe('negative login suite', () => {
     test.beforeEach(async ({page}) => {
@@ -17,7 +18,7 @@ test.describe('negative login suite', () => {
     })
     //fill in combinations
     for (const {username, password, expectedError} of invalidUsersDetails) {
-        test(`Authentication Failure with Invalid Username or Password: "${username}" and password: "${password}"`, async ({
+        test(`Authentication Failure with Invalid Username or Password: "${username}", "${password}"`, async ({
             page,
         }) => {
             await page.locator(usernameBox).fill(username)

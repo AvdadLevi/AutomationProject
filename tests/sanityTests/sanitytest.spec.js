@@ -1,20 +1,17 @@
 import {expect, test} from '@playwright/test'
 import {
-    baseURL,
-    usernameBox,
-    passwordBox,
-    loginButton,
-    inventoryURL,
-} from '../utils/testData'
+    baseURL, inventoryURL, shoppingCart
+} from '../utils/testData.js'
+import { usernameBox, passwordBox, loginButton } from '../utils/locators.js'
 
 test.describe('sanity suite', () => {
     test.beforeEach(async ({page}) => {
         await page.goto(baseURL)
     })
-    test('Verify that use can add items to the cart and complete purchase', async ({
+    test('Verify that user can add items to the cart and complete purchase', async ({
         page,
     }) => {
-        await page.goto(baseURL, inventoryURL) // Fix this
+        await page.goto(baseURL) 
         //log in
         await page.locator(usernameBox).fill('standard_user')
         await page.locator(passwordBox).fill('secret_sauce')
@@ -29,9 +26,9 @@ test.describe('sanity suite', () => {
             .locator('[data-test="add-to-cart-sauce-labs-bike-light"]')
             .click()
         await expect(
-            page.locator('[data-test="shopping-cart-link"]'),
+            page.locator(shoppingCart),
         ).toContainText('2')
-        await page.locator('[data-test="shopping-cart-link"]').click()
+        await page.locator(shoppingCart).click()
         //validate and checkout
         await expect(page).toHaveURL('https://www.saucedemo.com/cart.html')
         await expect(
