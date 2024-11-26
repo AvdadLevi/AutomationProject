@@ -1,18 +1,28 @@
-import { expect, test } from "@playwright/test";
-import { Validusers } from "../utils/parameterized tests/Validlogin";
-import { BASE_URL, usernamebox, passwordbox, loginButton, Inventory_URL } from "../utils/testData";
+import {expect, test} from '@playwright/test'
+import {
+    baseURL,
+    usernameBox,
+    passwordBox,
+    loginButton,
+    inventoryURL,
+} from '../utils/testData'
+import {validUsers} from '../utils/parameterizedData/validLogin.js'
 
-test.describe("Positive Login suite", () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto(BASE_URL);
+test.describe('Positive Login suite', () => {
+    test.beforeEach(async ({page}) => {
+        await page.goto(baseURL)
     })
-    for (const user of Validusers) {
-        test(`Login Success for All Valid Users ${user.username}`, async ({ page }) => {
-            await page.locator(usernamebox).fill(user.username);
-            await page.locator(passwordbox).fill(user.password);
-            await page.locator(loginButton).click();
-            await expect(page).toHaveURL(Inventory_URL);
-            await expect(page.locator('[data-test="title"]')).toContainText('Products');
-        });
-        }
-    })
+    for (const {username, password} of validUsers) {
+        test(`Login Success for All Valid Users ${username}`, async ({
+            page,
+        }) => {
+            await page.locator(usernameBox).fill(username)
+            await page.locator(passwordBox).fill(password)
+            await page.locator(loginButton).click()
+            await expect(page).toHaveURL(inventoryURL)
+            await expect(page.locator('[data-test="title"]')).toContainText(
+                'Products',
+            )
+        })
+    }
+})
