@@ -1,4 +1,4 @@
-export const Validusers = [
+export const validUsers = [ // Variables don't start with Capital letter
   { username: "standard_user", password: "secret_sauce" },
   { username: "problem_user", password: "secret_sauce" },
   { username: "performance_glitch_user", password: "secret_sauce" },
